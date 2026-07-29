@@ -10,7 +10,7 @@ npm run dev
 npm run check
 ```
 
-The starter includes Balsa's adaptive foundation, palette, themes, representative editable components, validation, and local agent context. Agents start with `.balsa/catalog-index.json`, then read only the selected component specification.
+The starter includes Balsa's adaptive foundation, palette, themes, representative editable components, validation, and local agent context. Agents search by intent first, then read only the selected component specification and install the matching editable source before implementation.
 
 Add more editable components with:
 
