@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "name": "file-upload-card",
-  "title": "FileUploadCard",
+  "name": "api-key-card",
+  "title": "ApiKeyCard",
   "category": "composition",
   "classification": "balsa-composition",
   "status": "beta",
   "version": "0.1.0",
-  "purpose": "Drag-and-drop import target with format guidance and browse action.",
+  "purpose": "One-time secret with copy, provenance, and revocation.",
   "useFor": [
     "Production application interfaces",
     "Design Studio composition previews",
@@ -36,7 +36,7 @@
       "body",
       "footer"
     ],
-    "research": "https://opensource.adobe.com/spectrum-web-components/components/dropzone/"
+    "research": "https://docs.stripe.com/keys"
   },
   "accessibility": [
     "Heading level follows the surrounding document hierarchy.",
@@ -60,12 +60,8 @@
     "Replacing the typed data contract with demo-only DOM.",
     "Adding a second principal card surface."
   ],
-  "examples": [
-    "Design Studio Grid",
-    "Application dashboard"
-  ],
   "publicApi": {
-    "source": "src/components/compositions/FileUploadCard.vue",
+    "source": "src/components/compositions/ApiKeyCard.vue",
     "props": [
       {
         "name": "headingLevel",
@@ -143,7 +139,7 @@
           "string"
         ],
         "required": false,
-        "default": "\"File upload\""
+        "default": "\"Deploy key\""
       },
       {
         "name": "description",
@@ -152,33 +148,56 @@
           "string"
         ],
         "required": false,
-        "default": "\"Drag and drop or browse.\""
+        "default": "\"Shown once. Store it before leaving this page.\""
       },
       {
-        "name": "acceptLabel",
+        "name": "token",
         "type": "string | undefined",
         "values": [
           "string"
         ],
         "required": false,
-        "default": "\"PNG, JPG, or PDF up to 10 MB\""
+        "default": "\"blsa_live_9f4c21ae7d6b48f0a35c8e12\""
       },
       {
-        "name": "actionLabel",
+        "name": "created",
         "type": "string | undefined",
         "values": [
           "string"
         ],
         "required": false,
-        "default": "\"Browse files\""
+        "default": "\"Today, 09:14\""
+      },
+      {
+        "name": "expires",
+        "type": "string | undefined",
+        "values": [
+          "string"
+        ],
+        "required": false,
+        "default": "\"Feb 3, 2027\""
       }
     ],
     "events": [
       {
-        "name": "browse",
+        "name": "revoke",
         "type": "[]"
       }
     ],
     "slots": []
-  }
+  },
+  "examples": [
+    {
+      "id": "default",
+      "title": "Default pattern",
+      "description": "Use the default typed pattern as a production-ready starting point.",
+      "source": "<script setup lang=\"ts\">\nimport ApiKeyCard from \"@/components/compositions/ApiKeyCard.vue\";\n</script>\n\n<template>\n  <ApiKeyCard title=\"Pattern placeholder\" />\n</template>"
+    },
+    {
+      "id": "inherited-design",
+      "title": "Inherited design",
+      "description": "The same composition follows the nearest Balsa theme and palette without pinned presentation.",
+      "source": "<script setup lang=\"ts\">\nimport ApiKeyCard from \"@/components/compositions/ApiKeyCard.vue\";\n</script>\n\n<template>\n  <ApiKeyCard title=\"Pattern placeholder\" />\n</template>"
+    }
+  ]
 }

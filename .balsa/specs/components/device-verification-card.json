@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "name": "invite-members-card",
-  "title": "InviteMembersCard",
+  "name": "device-verification-card",
+  "title": "DeviceVerificationCard",
   "category": "composition",
   "classification": "balsa-composition",
   "status": "beta",
   "version": "0.1.0",
-  "purpose": "Repeatable email and role rows with a single invitation action.",
+  "purpose": "Single-purpose one-time-code step with resend and explicit confirmation.",
   "useFor": [
     "Production application interfaces",
     "Design Studio composition previews",
@@ -36,7 +36,7 @@
       "body",
       "footer"
     ],
-    "research": "https://fluent2.microsoft.design/component-roadmap/"
+    "research": "https://auth0.com/docs/secure/multi-factor-authentication"
   },
   "accessibility": [
     "Heading level follows the surrounding document hierarchy.",
@@ -60,12 +60,8 @@
     "Replacing the typed data contract with demo-only DOM.",
     "Adding a second principal card surface."
   ],
-  "examples": [
-    "Design Studio Grid",
-    "Application dashboard"
-  ],
   "publicApi": {
-    "source": "src/components/compositions/InviteMembersCard.vue",
+    "source": "src/components/compositions/DeviceVerificationCard.vue",
     "props": [
       {
         "name": "headingLevel",
@@ -143,7 +139,7 @@
           "string"
         ],
         "required": false,
-        "default": "\"Invite team\""
+        "default": "\"Confirm this device\""
       },
       {
         "name": "description",
@@ -152,15 +148,42 @@
           "string"
         ],
         "required": false,
-        "default": "\"Add members to your workspace.\""
+        "default": "\"Enter the six digits sent to ada@example.com.\""
+      },
+      {
+        "name": "length",
+        "type": "number | undefined",
+        "values": [
+          "number"
+        ],
+        "required": false,
+        "default": "6"
       }
     ],
     "events": [
       {
-        "name": "invite",
-        "type": "[members: readonly InviteMember[]]"
+        "name": "verify",
+        "type": "[code: string]"
+      },
+      {
+        "name": "resend",
+        "type": "[]"
       }
     ],
     "slots": []
-  }
+  },
+  "examples": [
+    {
+      "id": "default",
+      "title": "Default pattern",
+      "description": "Use the default typed pattern as a production-ready starting point.",
+      "source": "<script setup lang=\"ts\">\nimport DeviceVerificationCard from \"@/components/compositions/DeviceVerificationCard.vue\";\n</script>\n\n<template>\n  <DeviceVerificationCard title=\"Pattern placeholder\" />\n</template>"
+    },
+    {
+      "id": "inherited-design",
+      "title": "Inherited design",
+      "description": "The same composition follows the nearest Balsa theme and palette without pinned presentation.",
+      "source": "<script setup lang=\"ts\">\nimport DeviceVerificationCard from \"@/components/compositions/DeviceVerificationCard.vue\";\n</script>\n\n<template>\n  <DeviceVerificationCard title=\"Pattern placeholder\" />\n</template>"
+    }
+  ]
 }

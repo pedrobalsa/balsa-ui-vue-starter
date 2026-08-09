@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "name": "account-security-card",
-  "title": "AccountSecurityCard",
+  "name": "command-palette-card",
+  "title": "CommandPaletteCard",
   "category": "composition",
   "classification": "balsa-composition",
   "status": "beta",
   "version": "0.1.0",
-  "purpose": "Credential update and separated destructive account action.",
+  "purpose": "Grouped command palette that reaches projects, actions, and settings from one search.",
   "useFor": [
     "Production application interfaces",
     "Design Studio composition previews",
@@ -36,7 +36,7 @@
       "body",
       "footer"
     ],
-    "research": "https://designsystem.digital.gov/templates/authentication-pages/create-account/"
+    "research": "https://linear.app/docs"
   },
   "accessibility": [
     "Heading level follows the surrounding document hierarchy.",
@@ -60,12 +60,8 @@
     "Replacing the typed data contract with demo-only DOM.",
     "Adding a second principal card surface."
   ],
-  "examples": [
-    "Design Studio Grid",
-    "Application dashboard"
-  ],
   "publicApi": {
-    "source": "src/components/compositions/AccountSecurityCard.vue",
+    "source": "src/components/compositions/CommandPaletteCard.vue",
     "props": [
       {
         "name": "headingLevel",
@@ -143,7 +139,7 @@
           "string"
         ],
         "required": false,
-        "default": "\"Account access\""
+        "default": "\"Jump to anything\""
       },
       {
         "name": "description",
@@ -152,55 +148,41 @@
           "string"
         ],
         "required": false,
-        "default": "\"Update your credentials or re-authenticate.\""
+        "default": "\"One search across projects, people and settings.\""
       },
       {
-        "name": "email",
-        "type": "string | undefined",
-        "values": [
-          "string"
-        ],
+        "name": "groups",
+        "type": "readonly CommandGroup[] | undefined",
         "required": false,
-        "default": "\"artist@studio.inc\""
+        "default": "[ { id: \"projects\", label: \"Projects\", items: [ { id: \"atlas\", label: \"Atlas\", icon: Boxes, shortcut: \"1\" }, { id: \"relay\", label: \"Relay\", icon: Boxes, shortcut: \"2\" }, { id: \"harbor\", label: \"Harbor\", icon: Boxes, shortcut: \"3\" }, ], }, { id: \"actions\", label: \"Actions\", items: [ { id: \"deploy\", label: \"Deploy the current commit\", icon: Rocket }, { id: \"branch\", label: \"Open a preview branch\", icon: GitBranch }, { id: \"logs\", label: \"Stream production logs\", icon: ScrollText }, ], }, ]"
       },
       {
-        "name": "saveLabel",
-        "type": "string | undefined",
-        "values": [
-          "string"
-        ],
+        "name": "recents",
+        "type": "readonly { id: string; label: string; detail: string; }[] | undefined",
         "required": false,
-        "default": "\"Update security\""
-      },
-      {
-        "name": "dangerTitle",
-        "type": "string | undefined",
-        "values": [
-          "string"
-        ],
-        "required": false,
-        "default": "\"Danger zone\""
-      },
-      {
-        "name": "dangerDescription",
-        "type": "string | undefined",
-        "values": [
-          "string"
-        ],
-        "required": false,
-        "default": "\"Archive this account and remove its catalog.\""
+        "default": "[ { id: \"atlas-logs\", label: \"Atlas production logs\", detail: \"8 minutes ago\" }, { id: \"relay-preview\", label: \"Relay preview branch\", detail: \"1 hour ago\" }, { id: \"members\", label: \"Members and roles\", detail: \"Yesterday\" }, ]"
       }
     ],
     "events": [
       {
-        "name": "save",
-        "type": "[email: string]"
-      },
-      {
-        "name": "danger",
-        "type": "[]"
+        "name": "select",
+        "type": "[id: string]"
       }
     ],
     "slots": []
-  }
+  },
+  "examples": [
+    {
+      "id": "default",
+      "title": "Default pattern",
+      "description": "Use the default typed pattern as a production-ready starting point.",
+      "source": "<script setup lang=\"ts\">\nimport CommandPaletteCard from \"@/components/compositions/CommandPaletteCard.vue\";\n</script>\n\n<template>\n  <CommandPaletteCard title=\"Pattern placeholder\" />\n</template>"
+    },
+    {
+      "id": "inherited-design",
+      "title": "Inherited design",
+      "description": "The same composition follows the nearest Balsa theme and palette without pinned presentation.",
+      "source": "<script setup lang=\"ts\">\nimport CommandPaletteCard from \"@/components/compositions/CommandPaletteCard.vue\";\n</script>\n\n<template>\n  <CommandPaletteCard title=\"Pattern placeholder\" />\n</template>"
+    }
+  ]
 }

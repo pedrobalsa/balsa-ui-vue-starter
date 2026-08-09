@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "name": "member-access-card",
-  "title": "MemberAccessCard",
+  "name": "incident-alert-card",
+  "title": "IncidentAlertCard",
   "category": "composition",
   "classification": "balsa-composition",
   "status": "beta",
-  "version": "0.1.1",
-  "purpose": "People, identity, role, and access metadata in a scannable list.",
+  "version": "0.1.0",
+  "purpose": "Half-height incident banner with acknowledge and open actions.",
   "useFor": [
     "Production application interfaces",
     "Design Studio composition previews",
@@ -36,7 +36,7 @@
       "body",
       "footer"
     ],
-    "research": "https://fluent2.microsoft.design/component-roadmap/"
+    "research": "https://docs.datadoghq.com/service_management/incident_management/"
   },
   "accessibility": [
     "Heading level follows the surrounding document hierarchy.",
@@ -60,22 +60,8 @@
     "Replacing the typed data contract with demo-only DOM.",
     "Adding a second principal card surface."
   ],
-  "examples": [
-    {
-      "id": "default",
-      "title": "Default pattern",
-      "description": "Use the default typed pattern as a production-ready starting point.",
-      "source": "<script setup lang=\"ts\">\nimport MemberAccessCard from \"@/components/compositions/MemberAccessCard.vue\";\n</script>\n\n<template>\n  <MemberAccessCard title=\"Pattern placeholder\" />\n</template>"
-    },
-    {
-      "id": "inherited-design",
-      "title": "Inherited design",
-      "description": "The same composition follows the nearest Balsa theme and palette without pinned presentation.",
-      "source": "<script setup lang=\"ts\">\nimport MemberAccessCard from \"@/components/compositions/MemberAccessCard.vue\";\n</script>\n\n<template>\n  <MemberAccessCard title=\"Pattern placeholder\" />\n</template>"
-    }
-  ],
   "publicApi": {
-    "source": "src/components/compositions/MemberAccessCard.vue",
+    "source": "src/components/compositions/IncidentAlertCard.vue",
     "props": [
       {
         "name": "headingLevel",
@@ -153,30 +139,51 @@
           "string"
         ],
         "required": false,
-        "default": "\"Member access\""
+        "default": "\"Active incident\""
       },
       {
-        "name": "description",
+        "name": "alertTitle",
         "type": "string | undefined",
         "values": [
           "string"
         ],
         "required": false,
-        "default": "\"People who can use this workspace.\""
+        "default": "\"Elevated latency in São Paulo\""
       },
       {
-        "name": "members",
-        "type": "readonly MemberAccess[] | undefined",
+        "name": "alertDescription",
+        "type": "string | undefined",
+        "values": [
+          "string"
+        ],
         "required": false,
-        "default": "[ { id: \"ada\", name: \"Ada Lovelace\", email: \"ada@example.com\", role: \"Owner\", initials: \"AL\", status: \"accent\" }, { id: \"grace\", name: \"Grace Hopper\", email: \"grace@example.com\", role: \"Editor\", initials: \"GH\" }, { id: \"margaret\", name: \"Margaret Hamilton\", email: \"margaret@example.com\", role: \"Viewer\", initials: \"MH\" }, { id: \"barbara\", name: \"Barbara Liskov\", email: \"barbara@example.com\", role: \"Editor\", initials: \"BL\" }, { id: \"katherine\", name: \"Katherine Johnson\", email: \"katherine@example.com\", role: \"Editor\", initials: \"KJ\" }, { id: \"radia\", name: \"Radia Perlman\", email: \"radia@example.com\", role: \"Viewer\", initials: \"RP\" }, { id: \"jean\", name: \"Jean Bartik\", email: \"jean@example.com\", role: \"Viewer\", initials: \"JB\" }, { id: \"alan\", name: \"Alan Turing\", email: \"alan@example.com\", role: \"Viewer\", initials: \"AT\" }, { id: \"annie\", name: \"Annie Easley\", email: \"annie@example.com\", role: \"Viewer\", initials: \"AE\" }, ]"
+        "default": "\"Serving from Washington while the region recovers. Deploys are paused.\""
       }
     ],
     "events": [
       {
-        "name": "select",
-        "type": "[id: string]"
+        "name": "open",
+        "type": "[]"
+      },
+      {
+        "name": "acknowledge",
+        "type": "[]"
       }
     ],
     "slots": []
-  }
+  },
+  "examples": [
+    {
+      "id": "default",
+      "title": "Default pattern",
+      "description": "Use the default typed pattern as a production-ready starting point.",
+      "source": "<script setup lang=\"ts\">\nimport IncidentAlertCard from \"@/components/compositions/IncidentAlertCard.vue\";\n</script>\n\n<template>\n  <IncidentAlertCard title=\"Pattern placeholder\" />\n</template>"
+    },
+    {
+      "id": "inherited-design",
+      "title": "Inherited design",
+      "description": "The same composition follows the nearest Balsa theme and palette without pinned presentation.",
+      "source": "<script setup lang=\"ts\">\nimport IncidentAlertCard from \"@/components/compositions/IncidentAlertCard.vue\";\n</script>\n\n<template>\n  <IncidentAlertCard title=\"Pattern placeholder\" />\n</template>"
+    }
+  ]
 }

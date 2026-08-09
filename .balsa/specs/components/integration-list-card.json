@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "name": "member-access-card",
-  "title": "MemberAccessCard",
+  "name": "integration-list-card",
+  "title": "IntegrationListCard",
   "category": "composition",
   "classification": "balsa-composition",
   "status": "beta",
-  "version": "0.1.1",
-  "purpose": "People, identity, role, and access metadata in a scannable list.",
+  "version": "0.1.0",
+  "purpose": "Connected services, each with the single control that governs it.",
   "useFor": [
     "Production application interfaces",
     "Design Studio composition previews",
@@ -36,7 +36,7 @@
       "body",
       "footer"
     ],
-    "research": "https://fluent2.microsoft.design/component-roadmap/"
+    "research": "https://api.slack.com/start"
   },
   "accessibility": [
     "Heading level follows the surrounding document hierarchy.",
@@ -60,22 +60,8 @@
     "Replacing the typed data contract with demo-only DOM.",
     "Adding a second principal card surface."
   ],
-  "examples": [
-    {
-      "id": "default",
-      "title": "Default pattern",
-      "description": "Use the default typed pattern as a production-ready starting point.",
-      "source": "<script setup lang=\"ts\">\nimport MemberAccessCard from \"@/components/compositions/MemberAccessCard.vue\";\n</script>\n\n<template>\n  <MemberAccessCard title=\"Pattern placeholder\" />\n</template>"
-    },
-    {
-      "id": "inherited-design",
-      "title": "Inherited design",
-      "description": "The same composition follows the nearest Balsa theme and palette without pinned presentation.",
-      "source": "<script setup lang=\"ts\">\nimport MemberAccessCard from \"@/components/compositions/MemberAccessCard.vue\";\n</script>\n\n<template>\n  <MemberAccessCard title=\"Pattern placeholder\" />\n</template>"
-    }
-  ],
   "publicApi": {
-    "source": "src/components/compositions/MemberAccessCard.vue",
+    "source": "src/components/compositions/IntegrationListCard.vue",
     "props": [
       {
         "name": "headingLevel",
@@ -153,7 +139,7 @@
           "string"
         ],
         "required": false,
-        "default": "\"Member access\""
+        "default": "\"Connected services\""
       },
       {
         "name": "description",
@@ -162,21 +148,35 @@
           "string"
         ],
         "required": false,
-        "default": "\"People who can use this workspace.\""
+        "default": "\"What this workspace is allowed to talk to.\""
       },
       {
-        "name": "members",
-        "type": "readonly MemberAccess[] | undefined",
+        "name": "integrations",
+        "type": "readonly Integration[] | undefined",
         "required": false,
-        "default": "[ { id: \"ada\", name: \"Ada Lovelace\", email: \"ada@example.com\", role: \"Owner\", initials: \"AL\", status: \"accent\" }, { id: \"grace\", name: \"Grace Hopper\", email: \"grace@example.com\", role: \"Editor\", initials: \"GH\" }, { id: \"margaret\", name: \"Margaret Hamilton\", email: \"margaret@example.com\", role: \"Viewer\", initials: \"MH\" }, { id: \"barbara\", name: \"Barbara Liskov\", email: \"barbara@example.com\", role: \"Editor\", initials: \"BL\" }, { id: \"katherine\", name: \"Katherine Johnson\", email: \"katherine@example.com\", role: \"Editor\", initials: \"KJ\" }, { id: \"radia\", name: \"Radia Perlman\", email: \"radia@example.com\", role: \"Viewer\", initials: \"RP\" }, { id: \"jean\", name: \"Jean Bartik\", email: \"jean@example.com\", role: \"Viewer\", initials: \"JB\" }, { id: \"alan\", name: \"Alan Turing\", email: \"alan@example.com\", role: \"Viewer\", initials: \"AT\" }, { id: \"annie\", name: \"Annie Easley\", email: \"annie@example.com\", role: \"Viewer\", initials: \"AE\" }, ]"
+        "default": "[ { id: \"vcs\", name: \"Source control\", detail: \"Pushes trigger a preview build\", initials: \"SC\", enabled: true }, { id: \"chat\", name: \"Team chat\", detail: \"Deploy results to #atlas-deploys\", initials: \"TC\", enabled: true }, { id: \"pager\", name: \"On-call paging\", detail: \"Production failures only\", initials: \"OC\", enabled: true }, { id: \"issues\", name: \"Issue tracker\", detail: \"Link deploys to the work they close\", initials: \"IT\", enabled: false }, { id: \"warehouse\", name: \"Data warehouse\", detail: \"Nightly export of usage records\", initials: \"DW\", enabled: false }, { id: \"status\", name: \"Status page\", detail: \"Publishes incidents automatically\", initials: \"SP\", enabled: true }, ]"
       }
     ],
     "events": [
       {
-        "name": "select",
-        "type": "[id: string]"
+        "name": "toggle",
+        "type": "[id: string, enabled: boolean]"
       }
     ],
     "slots": []
-  }
+  },
+  "examples": [
+    {
+      "id": "default",
+      "title": "Default pattern",
+      "description": "Use the default typed pattern as a production-ready starting point.",
+      "source": "<script setup lang=\"ts\">\nimport IntegrationListCard from \"@/components/compositions/IntegrationListCard.vue\";\n</script>\n\n<template>\n  <IntegrationListCard title=\"Pattern placeholder\" />\n</template>"
+    },
+    {
+      "id": "inherited-design",
+      "title": "Inherited design",
+      "description": "The same composition follows the nearest Balsa theme and palette without pinned presentation.",
+      "source": "<script setup lang=\"ts\">\nimport IntegrationListCard from \"@/components/compositions/IntegrationListCard.vue\";\n</script>\n\n<template>\n  <IntegrationListCard title=\"Pattern placeholder\" />\n</template>"
+    }
+  ]
 }

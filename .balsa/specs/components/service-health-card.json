@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "name": "appointment-card",
-  "title": "AppointmentCard",
+  "name": "service-health-card",
+  "title": "ServiceHealthCard",
   "category": "composition",
   "classification": "balsa-composition",
   "status": "beta",
   "version": "0.1.0",
-  "purpose": "Appointment time selection with preparation guidance and confirmation.",
+  "purpose": "Half-height status strip reporting state and latency per region.",
   "useFor": [
     "Production application interfaces",
     "Design Studio composition previews",
@@ -36,7 +36,7 @@
       "body",
       "footer"
     ],
-    "research": "https://designsystem.digital.gov/patterns/create-a-user-profile/enter-a-memorable-date/"
+    "research": "https://www.cloudflarestatus.com"
   },
   "accessibility": [
     "Heading level follows the surrounding document hierarchy.",
@@ -60,12 +60,8 @@
     "Replacing the typed data contract with demo-only DOM.",
     "Adding a second principal card surface."
   ],
-  "examples": [
-    "Design Studio Grid",
-    "Application dashboard"
-  ],
   "publicApi": {
-    "source": "src/components/compositions/AppointmentCard.vue",
+    "source": "src/components/compositions/ServiceHealthCard.vue",
     "props": [
       {
         "name": "headingLevel",
@@ -143,7 +139,7 @@
           "string"
         ],
         "required": false,
-        "default": "\"Book appointment\""
+        "default": "\"Regional health\""
       },
       {
         "name": "description",
@@ -152,30 +148,30 @@
           "string"
         ],
         "required": false,
-        "default": "\"Dr. Sarah Chen · Cardiology\""
+        "default": "\"Every edge, right now.\""
       },
       {
-        "name": "dateLabel",
-        "type": "string | undefined",
-        "values": [
-          "string"
-        ],
+        "name": "regions",
+        "type": "readonly ServiceStatus[] | undefined",
         "required": false,
-        "default": "\"Available on March 18, 2026\""
-      },
-      {
-        "name": "times",
-        "type": "readonly string[] | undefined",
-        "required": false,
-        "default": "[\"9:00 AM\", \"10:30 AM\", \"11:00 AM\", \"1:30 PM\"]"
+        "default": "[ { id: \"iad\", region: \"Washington\", state: \"Healthy\", latency: \"18 ms\", color: \"primary\" }, { id: \"fra\", region: \"Frankfurt\", state: \"Healthy\", latency: \"24 ms\", color: \"primary\" }, { id: \"gru\", region: \"São Paulo\", state: \"Degraded\", latency: \"96 ms\", color: \"secondary\" }, { id: \"syd\", region: \"Sydney\", state: \"Healthy\", latency: \"41 ms\", color: \"primary\" }, ]"
       }
     ],
-    "events": [
-      {
-        "name": "book",
-        "type": "[time: string]"
-      }
-    ],
+    "events": [],
     "slots": []
-  }
+  },
+  "examples": [
+    {
+      "id": "default",
+      "title": "Default pattern",
+      "description": "Use the default typed pattern as a production-ready starting point.",
+      "source": "<script setup lang=\"ts\">\nimport ServiceHealthCard from \"@/components/compositions/ServiceHealthCard.vue\";\n</script>\n\n<template>\n  <ServiceHealthCard title=\"Pattern placeholder\" />\n</template>"
+    },
+    {
+      "id": "inherited-design",
+      "title": "Inherited design",
+      "description": "The same composition follows the nearest Balsa theme and palette without pinned presentation.",
+      "source": "<script setup lang=\"ts\">\nimport ServiceHealthCard from \"@/components/compositions/ServiceHealthCard.vue\";\n</script>\n\n<template>\n  <ServiceHealthCard title=\"Pattern placeholder\" />\n</template>"
+    }
+  ]
 }

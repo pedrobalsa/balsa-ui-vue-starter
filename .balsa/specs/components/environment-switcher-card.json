@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "name": "transaction-list-card",
-  "title": "TransactionListCard",
+  "name": "environment-switcher-card",
+  "title": "EnvironmentSwitcherCard",
   "category": "composition",
   "classification": "balsa-composition",
   "status": "beta",
   "version": "0.1.0",
-  "purpose": "Scannable activity rows with identity, metadata, time, and amount.",
+  "purpose": "Searchable environment picker with the current selection stated.",
   "useFor": [
     "Production application interfaces",
     "Design Studio composition previews",
@@ -36,7 +36,7 @@
       "body",
       "footer"
     ],
-    "research": "https://primer.style/product/components/action-list/guidelines/"
+    "research": "https://vercel.com/docs/environments"
   },
   "accessibility": [
     "Heading level follows the surrounding document hierarchy.",
@@ -60,12 +60,8 @@
     "Replacing the typed data contract with demo-only DOM.",
     "Adding a second principal card surface."
   ],
-  "examples": [
-    "Design Studio Grid",
-    "Application dashboard"
-  ],
   "publicApi": {
-    "source": "src/components/compositions/TransactionListCard.vue",
+    "source": "src/components/compositions/EnvironmentSwitcherCard.vue",
     "props": [
       {
         "name": "headingLevel",
@@ -143,7 +139,7 @@
           "string"
         ],
         "required": false,
-        "default": "\"Recent transactions\""
+        "default": "\"Switch environment\""
       },
       {
         "name": "description",
@@ -152,25 +148,35 @@
           "string"
         ],
         "required": false,
-        "default": "\"Your latest account activity.\""
+        "default": "\"Everything below applies to the one you pick.\""
       },
       {
-        "name": "items",
-        "type": "readonly TransactionItem[] | undefined",
+        "name": "environments",
+        "type": "readonly string[] | undefined",
         "required": false,
-        "default": "[ { id: \"coffee\", name: \"Blue Bottle Coffee\", category: \"Food & drink\", time: \"Today, 10:24 AM\", amount: \"-$6.50\", icon: Coffee }, { id: \"market\", name: \"Whole Foods Market\", category: \"Groceries\", time: \"Yesterday\", amount: \"-$142.30\", icon: ShoppingCart }, { id: \"payout\", name: \"Stripe payout\", category: \"Income\", time: \"Oct 12\", amount: \"+$4,200.00\", icon: Wallet, status: \"accent\" }, ]"
+        "default": "[ \"atlas-production\", \"atlas-preview\", \"atlas-staging\", \"relay-production\", \"relay-preview\", \"harbor-production\", \"harbor-development\", \"nova-development\", \"quill-preview\", ]"
       }
     ],
     "events": [
       {
-        "name": "select",
-        "type": "[id: string]"
-      },
-      {
-        "name": "viewAll",
-        "type": "[]"
+        "name": "switch",
+        "type": "[environment: string]"
       }
     ],
     "slots": []
-  }
+  },
+  "examples": [
+    {
+      "id": "default",
+      "title": "Default pattern",
+      "description": "Use the default typed pattern as a production-ready starting point.",
+      "source": "<script setup lang=\"ts\">\nimport EnvironmentSwitcherCard from \"@/components/compositions/EnvironmentSwitcherCard.vue\";\n</script>\n\n<template>\n  <EnvironmentSwitcherCard title=\"Pattern placeholder\" />\n</template>"
+    },
+    {
+      "id": "inherited-design",
+      "title": "Inherited design",
+      "description": "The same composition follows the nearest Balsa theme and palette without pinned presentation.",
+      "source": "<script setup lang=\"ts\">\nimport EnvironmentSwitcherCard from \"@/components/compositions/EnvironmentSwitcherCard.vue\";\n</script>\n\n<template>\n  <EnvironmentSwitcherCard title=\"Pattern placeholder\" />\n</template>"
+    }
+  ]
 }
